@@ -1,11 +1,15 @@
+import { CarsService } from './../cars/cars.service';
 import { CARS_SEED } from './data/cars.seed';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class SeedService {
 
-  //CARS_SEED
+  constructor(
+    private readonly carsService: CarsService
+  ){}
+
   populateDB(){
-    return 'Seed executed';
+    this.carsService.fillCarsWithSeedData(CARS_SEED);
   }
 }
